@@ -6,11 +6,11 @@ tagline: MY HOMEPAGE
 actionText: 技术文档 →
 actionLink: /tech/interview/
 features:
-- title: 简洁至上
-  details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-- title: Vue驱动
-  details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-- title: 高性能
-  details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+- title: 前端技术
+  details: 以HTML(5) + CSS(3)布局，通过JavaScript与进行异步操作与后端交互。
+- title: 主流框架
+  details: 以 Vue + webpack 为主，React、jQuery、BootStrap。
+- title: 项目经验
+  details: BS端管理系统、WebApp、Hybrid App、小程序开发。
 footer: © 2020 Mr.cat
 ---
