@@ -55,27 +55,35 @@ ECMAScript 6是 JavaScript 语言的下一代标准，已于2015年6月正式发
 ### 13、Iterator 和 for...of 循环
 
 ### 14、Generator 函数
-ES6提供的一种异步编程解决方案，Generator 函数是一个状态机，封装了多个内部状态。
-` function* helloWorldGenerator() {
+ES6 提供的一种异步编程解决方案, Generator 函数是一个状态机，封装了多个内部状态。
+```
+function* helloWorldGenerator() {
 	yield 'hello';
 	yield 'world';
 	return 'ending';
-}`
+}
 
-调用后返回指向内部状态的指针，调用next() 才会移向下一个状态，参数：
-`hw.next();
+var hw = helloWorldGenerator();
+```
+调用后返回指向内部状态的指针, 调用next()才会移向下一个状态, 参数:
+```
+hw.next();
 // { value: 'hello', done: false }
+
 hw.next();
 // { value: 'world', done: false }
+
 hw.next();
 // { value: 'ending', done: true }
+
 hw.next();
 // { value: undefined, done: true }
-`
+```
 
 ### 15、Promise 对象
 * 手写Promise实现：
-`const myPromise = new Promise((resolve, reject) => {
+```
+const myPromise = new Promise((resolve, reject) => {
 	// 需要执行的代码
 	...
 	if(/* 异步执行成功 */) {
@@ -84,17 +92,22 @@ hw.next();
 		reject(error)
 	}
 })
+
 myPromise.then(value => {
 	// 成功后调用，使用value值
 }, error => {
 	// 失败后调用，获取错误信息error
 })
-`
+```
 * Promise 优缺点：
-优点: 解决回调地狱，对异步任务写法更标准化与简洁化
-缺点: 首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消；其次，如果不设置回调函数，Promise内部抛出的错误，不会反应到外部；第三，当处于
-pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。极简版Promise封装：
-`function promise() {
+	* 优点: 解决回调地狱，对异步任务写法更标准化与简洁化。
+	* 缺点: 
+		* 首先，无法取消Promise，一旦新建它就会立即执行，无法中途取消；
+		* 其次，如果不设置回调函数，Promise内部抛出的错误，不会反应到外部；
+		* 第三，当处于pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
+* 极简版Promise封装：
+```
+function promise() {
 	this.msg = '';
 	this.status = 'pending';
 	let _this = this;
@@ -108,6 +121,7 @@ pending状态时，无法得知目前进展到哪一个阶段（刚刚开始还�
 	})
 	return this;
 }
+
 promise.prototype.then = function() {
 	if(this.status === 'fulfilled') {
 		arguments[0](this.msg)
@@ -115,8 +129,23 @@ promise.prototype.then = function() {
 		arguments[1](this.msg)
 	}
 }
-`
+```
+
 ### 16、异步操作和 async 函数
+ES7提供了 async 函数，使得异步操作变得更加方便，async 函数是什么？一句话，async 函数就是 Generator 函数的语法糖。
+用一个 Generator 函数，一次读取两个文件。
+```
+const fs = require('fs');
+
+const readFile = function (fileName) {
+	return new Promise(function(resolve, reject) {
+		fs.readFile(fileName, function(error, data) {
+			if(error) reject(error);
+			resolve(data);
+		});
+	});
+};
+```
 
 ### 17、Class 类
 
