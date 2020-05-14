@@ -145,7 +145,23 @@ const readFile = function (fileName) {
 		});
 	});
 };
+
+// Generator 函数
+const gen = function* () {
+	let f1 = yiled readFile('/etc/fstab');
+	let f2 = yiled readFile('/etc/shells');
+	console.log(f1.toString());
+	console.log(f2.toString());
+};
+// 改写成 async 函数
+const asyncReadFile = async function() {
+	let f1 = await readFile('/etc/fstab');
+	let f2 = await readFile('/etc/shells');
+	console.log(f1.toString());
+	console.log(f2.toString());
+};
 ```
+一比较就会发现，async 函数就是将 Generator 函数的星号( * )替换成 async，将 yiled 替换成 await，仅此而已。
 
 ### 17、Class 类
 
