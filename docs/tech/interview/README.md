@@ -29,8 +29,45 @@
 ECMAScript 6是 JavaScript 语言的下一代标准，已于2015年6月正式发布。
 
 ### 1、let 和 const 命令
+`let` 声明变量，用法类似 `var`, 但是声明到变量只在 `let` 命令所在到代码块内有效：
+```
+{
+	let a = 10;
+	var b = 1;
+}
+a // ReferenceError: a is not defined
+b // 1
+```
+* 不存在变量提升
+* 暂时性死区，（temporal dead zone，简称TDZ）
+* 不允许重复声明
+
+`const` 用来声明常量，一旦声明，其值就不能改变。
+```
+const PI = 3.1415;
+PI // 3.1415
+
+PI = 3;
+// TypeError: "PI" is read-only
+```
 
 ### 2、变量的解构赋值
+ES6允许按照一定到模式，从数组和对象中提取值，对变量进行赋值，这被成为解构（Restructuring）。
+```
+// 以前变量赋值，只能直接指定值。
+var a = 1;
+var b = 2;
+var c = 3;
+
+// ES6
+var [a, b, c] = [1, 2, 3]; 		// 数组解构
+a // 1,
+b // 2,
+c // 3,
+var { foo, bar } = { foo: "aaa", bar: "bbb" };		// 对象解构
+foo // "aaa"
+bar // "bbb"
+```
 
 ### 3、字符串的扩展
 
