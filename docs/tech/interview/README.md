@@ -252,6 +252,6 @@ mongod --dbpath /usr/local/mongodb/data/db
 ```
 然后在 另一终端执行 mongo  命令后：
 
- ![image](./mongodb.jpg)
+ ![image](./images/mongodb.jpg)
 
 至此安装成功可以愉快使用了~
