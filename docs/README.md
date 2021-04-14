@@ -12,5 +12,5 @@ features:
   details: 以 Vue + webpack 为主，React、jQuery、BootStrap。
 - title: 项目经验
   details: BS端管理系统、WebApp、Hybrid App、小程序开发。
-footer: © 2020 Mr.cat
+footer: © 2021 Mr.cat
 ---
