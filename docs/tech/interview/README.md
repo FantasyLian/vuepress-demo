@@ -255,3 +255,41 @@ mongod --dbpath /usr/local/mongodb/data/db
  ![image](./images/mongodb.jpg)
 
 至此安装成功可以愉快使用了~
+
+### 利用node.js的http-server开启本地服务，步骤如下：
+
+首先电脑已经安装了node.js，安装http-server
+npm install http-server -g
+然后进入你想作为本地服务器根目录的位置，执行命令htpp-server
+启动本地服务器成功，可以使用ctrl+c关闭服务器
+
+`http-server -c-1 `  （⚠️只输入http-server的话，更新了代码后，页面不会同步更新）简写 hs
+
+可以修改服务器的监听地址以及监听的端口号
+
+`hs <path> -a 127.0.0.1 -p 8090`
+path 时目录地址，默认时cmd打开的目录地址，可以省略，默认时cmd打开的路径地址
+
+-a 参数是监听地址
+
+-p 参数是监听的端口
+
+其他参数
+
+作用	作用
+-p 或者 --port	端口设置，默认是 8080
+-a	-a 监听地址设置默认是 0.0.0.0
+-d	是否显示文件列表 默认true
+-i	显示自动索引 默认true
+-g 或者 --gzip 	默认false，当文件的gzip版本存在且请求接受gzip编码时，它将服务于./public/some-file.js.gz，而不是./public/some-file.js
+-e 或者 --ext	如果没有提供默认文件扩展名(默认为html)
+-s 或者 --silent 	禁止控制台日志信息输出
+–cors	允许跨域资源共享
+-o	启动服务后打开默认浏览器
+-c	设置缓存cache-control max-age heade存留时间（以秒为单位），示例：-c10是10秒，默认是3600秒，如果要禁用缓存就使用-c-1
+-U 或者 --utc	使用 UTC格式，在控制台输出时间信息
+-P 或者 --proxy	 通过一个 url地址，代理不能通过本地解析的资源
+-S 或者 --ssl 	使用https协议
+-C 或者 --cert	 ssl证书文件的路径，默认是cert.pem
+-K 或者 --key	 ssl密匙文件路径
+-h 或者 --help 	显示帮助
