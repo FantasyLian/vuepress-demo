@@ -9,12 +9,12 @@
 
 ## CSS(3)
 
-### 1、css 盒模型：
+### 1、css 盒模型
 
 - 标准模式: `box-sizing: content-box` (默认); 宽高不包括内边距和边框
 - 怪异模式: `box-sizing: border-box`
 
-### 2、常用的清除浮动的方法：
+### 2、常用的清除浮动的方法
 
 当父元素不给高度的时候，内部元素不浮动时会撑开, 而浮动的时候，父元素变成一条线, 造成塌陷。
 
@@ -40,8 +40,8 @@ ECMAScript 6 是 JavaScript 语言的下一代标准，已于 2015 年 6 月正�
 
 ```
 {
-	let a = 10;
-	var b = 1;
+ let a = 10;
+ var b = 1;
 }
 a // ReferenceError: a is not defined
 b // 1
@@ -72,11 +72,11 @@ var b = 2;
 var c = 3;
 
 // ES6
-var [a, b, c] = [1, 2, 3]; 		// 数组解构
+var [a, b, c] = [1, 2, 3];   // 数组解构
 a // 1,
 b // 2,
 c // 3,
-var { foo, bar } = { foo: "aaa", bar: "bbb" };		// 对象解构
+var { foo, bar } = { foo: "aaa", bar: "bbb" };  // 对象解构
 foo // "aaa"
 bar // "bbb"
 ```
@@ -109,9 +109,9 @@ ES6 提供的一种异步编程解决方案, Generator 函数是一个状态机�
 
 ```
 function* helloWorldGenerator() {
-	yield 'hello';
-	yield 'world';
-	return 'ending';
+ yield 'hello';
+ yield 'world';
+ return 'ending';
 }
 
 var hw = helloWorldGenerator();
@@ -139,19 +139,19 @@ hw.next();
 
 ```
 const myPromise = new Promise((resolve, reject) => {
-	// 需要执行的代码
-	...
-	if(/* 异步执行成功 */) {
-		resolve(value)
-	} else if(/* 异步执行失败 */) {
-		reject(error)
-	}
+ // 需要执行的代码
+ ...
+ if(/* 异步执行成功 */) {
+  resolve(value)
+ } else if(/* 异步执行失败 */) {
+  reject(error)
+ }
 })
 
 myPromise.then(value => {
-	// 成功后调用，使用value值
+ // 成功后调用，使用value值
 }, error => {
-	// 失败后调用，获取错误信息error
+ // 失败后调用，获取错误信息error
 })
 ```
 
@@ -165,26 +165,26 @@ myPromise.then(value => {
 
 ```
 function promise() {
-	this.msg = '';
-	this.status = 'pending';
-	let _this = this;
-	let process = arguments[0];
-	process (function() {
-		_this.status = 'fulfilled';
-		_this.msg = arguments[0]
-	}, function() {
-		_this.status = 'rejected';
-		_this.msg = arguments[0];
-	})
-	return this;
+ this.msg = '';
+ this.status = 'pending';
+ let _this = this;
+ let process = arguments[0];
+ process (function() {
+  _this.status = 'fulfilled';
+  _this.msg = arguments[0]
+ }, function() {
+  _this.status = 'rejected';
+  _this.msg = arguments[0];
+ })
+ return this;
 }
 
 promise.prototype.then = function() {
-	if(this.status === 'fulfilled') {
-		arguments[0](this.msg)
-	} else if(this.status === 'rejected' && arguments[1]) {
-		arguments[1](this.msg)
-	}
+ if(this.status === 'fulfilled') {
+  arguments[0](this.msg)
+ } else if(this.status === 'rejected' && arguments[1]) {
+  arguments[1](this.msg)
+ }
 }
 ```
 
@@ -197,27 +197,27 @@ ES7 提供了 async 函数，使得异步操作变得更加方便，async 函数
 const fs = require('fs');
 
 const readFile = function (fileName) {
-	return new Promise(function(resolve, reject) {
-		fs.readFile(fileName, function(error, data) {
-			if(error) reject(error);
-			resolve(data);
-		});
-	});
+ return new Promise(function(resolve, reject) {
+  fs.readFile(fileName, function(error, data) {
+   if(error) reject(error);
+   resolve(data);
+  });
+ });
 };
 
 // Generator 函数
 const gen = function* () {
-	let f1 = yiled readFile('/etc/fstab');
-	let f2 = yiled readFile('/etc/shells');
-	console.log(f1.toString());
-	console.log(f2.toString());
+ let f1 = yiled readFile('/etc/fstab');
+ let f2 = yiled readFile('/etc/shells');
+ console.log(f1.toString());
+ console.log(f2.toString());
 };
 // 改写成 async 函数
 const asyncReadFile = async function() {
-	let f1 = await readFile('/etc/fstab');
-	let f2 = await readFile('/etc/shells');
-	console.log(f1.toString());
-	console.log(f2.toString());
+ let f1 = await readFile('/etc/fstab');
+ let f2 = await readFile('/etc/shells');
+ console.log(f1.toString());
+ console.log(f2.toString());
 };
 ```
 
@@ -299,14 +299,14 @@ mongod --dbpath /usr/local/mongodb/data/db
 
 至此安装成功可以愉快使用了~
 
-### 利用 node.js 的 http-server 开启本地服务：
+### 利用 node.js 的 http-server 开启本地服务
 
 首先电脑已经安装了 node.js，安装 http-server
 npm install http-server -g
 然后进入你想作为本地服务器根目录的位置，执行命令 htpp-server
 启动本地服务器成功，可以使用 ctrl+c 关闭服务器
 
-`http-server -c-1 ` （⚠️ 只输入 http-server 的话，更新了代码后，页面不会同步更新）简写 hs
+`http-server -c-1` （⚠️ 只输入 http-server 的话，更新了代码后，页面不会同步更新）简写 hs
 
 可以修改服务器的监听地址以及监听的端口号
 

@@ -9,8 +9,8 @@ features:
 - title: 前端技术
   details: 以HTML(5) + CSS(3)布局，通过JavaScript与进行异步操作与后端交互。
 - title: 主流框架
-  details: 以 Vue + webpack 为主，React、jQuery、BootStrap。
+  details: Vue, React, Vite, Webpack, jQuery、BootStrap。
 - title: 项目经验
   details: BS端管理系统、WebApp、Hybrid App、小程序开发。
-footer: © 2021 Mr.cat
+footer: © 2022 Mr.cat
 ---
