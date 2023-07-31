@@ -38,7 +38,7 @@ ECMAScript 6 是 JavaScript 语言的下一代标准，已于 2015 年 6 月正�
 
 `let` 声明变量，用法类似 `var`, 但是声明到变量只在 `let` 命令所在到代码块内有效：
 
-```
+```javascript
 {
  let a = 10;
  var b = 1;
@@ -53,7 +53,7 @@ b // 1
 
 `const` 用来声明常量，一旦声明，其值就不能改变。
 
-```
+```javascript
 const PI = 3.1415;
 PI // 3.1415
 
@@ -65,7 +65,7 @@ PI = 3;
 
 ES6 允许按照一定到模式，从数组和对象中提取值，对变量进行赋值，这被成为解构（Restructuring）。
 
-```
+```javascript
 // 以前变量赋值，只能直接指定值。
 var a = 1;
 var b = 2;
@@ -107,7 +107,7 @@ bar // "bbb"
 
 ES6 提供的一种异步编程解决方案, Generator 函数是一个状态机，封装了多个内部状态。
 
-```
+```javascript
 function* helloWorldGenerator() {
  yield 'hello';
  yield 'world';
@@ -119,7 +119,7 @@ var hw = helloWorldGenerator();
 
 调用后返回指向内部状态的指针, 调用 next()才会移向下一个状态, 参数:
 
-```
+```javascript
 hw.next();
 // { value: 'hello', done: false }
 
@@ -137,7 +137,7 @@ hw.next();
 
 - 手写 Promise 实现：
 
-```
+```javascript
 const myPromise = new Promise((resolve, reject) => {
  // 需要执行的代码
  ...
@@ -163,7 +163,7 @@ myPromise.then(value => {
     - 第三，当处于 pending 状态时，无法得知目前进展到哪一个阶段（刚刚开始还是即将完成）。
 - 极简版 Promise 封装：
 
-```
+```javascript
 function promise() {
  this.msg = '';
  this.status = 'pending';
@@ -193,7 +193,7 @@ promise.prototype.then = function() {
 ES7 提供了 async 函数，使得异步操作变得更加方便，async 函数是什么？一句话，async 函数就是 Generator 函数的语法糖。
 用一个 Generator 函数，一次读取两个文件。
 
-```
+```javascript
 const fs = require('fs');
 
 const readFile = function (fileName) {
@@ -225,43 +225,188 @@ const asyncReadFile = async function() {
 
 ### 17、Class 类
 
-## TypeScript
+- 类的由来
 
-TypeScript 是微软公司开发的开源编程语言。它本质上是在 JavaScript 语言中添加了可选的静态类型和基于类的面向对象编程等新特性。
+Javascript语言中，生成实例对象的传统方法是通过***构造函数***：
+
+```javascript
+function Point(x, y) {
+  this.x = x;
+  this.y = y;
+}
+Point.prototype.toString = function () {
+  return '(' + this.x + ', ' + this.y + ')';
+};
+var p = new Point(1, 2);
+```
+
+上面这种写法跟传统的面向对象语言（比如 C++ 和 Java）差异很大，很容易让新学习这门语言的程序员感到困惑。
+
+ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过`class`关键字来定义类。例如：
+
+```javascript
+class Point {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+  toString() {
+    return '(' + this.x + ', ' + this.y + ')';
+  }
+}
+```
+
+其实，ES6的`class`可以看作是一个语法糖，他的绝大部分功能ES5都可以做到，县的`class`写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面代码定义了一个“类”，可以看到里面有一个`constructor`方法，这就是构造方法，而`this`关键字则代表实例对象。也就是说，ES5 的构造函数`Point`，对应 ES6 的`Point`类的构造方法。`Point`类除了构造方法，还定义了一个`toString`方法。注意，定义“类”的方法的时候，前面不需要加上`function`这个关键字，直接把函数定义放进去了就可以了。另外，方法之间不需要逗号分隔，加了会报错。
+
+ES6 的类，完全可以看作构造函数的另一种写法:
+
+```javascript
+class Point {
+  // ...
+}
+typeof Point // "function"
+Point === Point.prototype.constructor // true
+// 类的数据类型就是函数，类本身就指向构造函数
+```
+
+使用的时候，也是直接对类使用`new`命令，跟构造函数的用法完全一致。
+
+```javascript
+class Bar {
+  doStuff() {
+    console.log('stuff');
+  }
+}
+var b = new Bar();
+b.doStuff() // "stuff"
+```
+
+构造函数的`prototype`属性，在 ES6 的“类”上面继续存在。事实上，类的所有方法都定义在类的`prototype`属性上面。
+
+```javascript
+class Point {
+  constructor() {
+    // ...
+  }
+  toString() {
+    // ...
+  }
+  toValue() {
+    // ...
+  }
+}
+// 等同于
+Point.prototype = {
+  constructor() {},
+  toString() {},
+  toValue() {},
+};
+```
+
+在类的实例上面调用方法，其实就是调用原型上的方法。
+
+```javascript
+class B {}
+let b = new B();
+b.constructor === B.prototype.constructor // true
+
+// 上面代码中，b是B类的实例，它的constructor方法就是B类原型的constructor方法。
+```
+
+由于类的方法都定义在`prototype`对象上面，所以类的新方法可以添加在`prototype`对象上面。`Object.assign`方法可以很方便地一次向类添加多个方法。
+
+```javascript
+class Point {
+  constructor(){
+    // ...
+  }
+}
+Object.assign(Point.prototype, {
+  toString(){},
+  toValue(){}
+});
+```
+
+`prototype`对象的`constructor`属性，直接指向“类”的本身，这与 ES5 的行为是一致的。
+
+```javascript
+Point.prototype.constructor === Point // true
+```
+
+另外，类的内部所有定义的方法，都是不可枚举的（non-enumerable）。
+
+```javascript
+class Point {
+  constructor(x, y) {
+    // ...
+  }
+  toString() {
+    // ...
+  }
+}
+Object.keys(Point.prototype)
+// []
+Object.getOwnPropertyNames(Point.prototype)
+// ["constructor","toString"]
+```
+
+上面代码中，`toString`方法是`Point`类内部定义的方法，它是不可枚举的。这一点与 ES5 的行为不一致。
+
+```javascript
+var Point = function (x, y) {
+  // ...
+};
+Point.prototype.toString = function() {
+  // ...
+};
+Object.keys(Point.prototype)
+// ["toString"]
+Object.getOwnPropertyNames(Point.prototype)
+// ["constructor","toString"]
+```
+
+上面代码采用 ES5 的写法，`toString`方法就是可枚举的。
+
+- Constructor 方法
+
+
+
 
 ## 其他
 
 ### MacOS 安装 MongoDB
 
-`MongoDB Community Server 社区版下载地址： https://www.mongodb.com/try/download/community`
+```bash
+MongoDB Community Server 社区版下载地址： https://www.mongodb.com/try/download/community
+```
 
 #### 进入 `/usr/local`
 
-```
+```bash
 cd /usr/local
 ```
 
 #### 下载
 
-```
+```bash
 sudo curl -O https://fastdl.mongodb.org/osx/mongodb-macos-x86_64-4.4.5.tgz
 ```
 
 #### 解压
 
-```
+```bash
 sudo tar -zxvf mongodb-macos-x86_64-4.4.5.tgz
 ```
 
 #### 重命名为 mongodb 目录
 
-```
+```bash
 sudo mv mongodb-macos-x86_64-4.4.5.tgz mongodb
 ```
 
 安装完成后，我们可以把 MongoDB 的二进制命令文件目录（安装目录/bin）添加到 PATH 路径中：
 
-```
+```bash
 vim ~/.bash_profile
 若初次配置环境变量没有.bash_profile文件则首先创建配置文件
 touch ~/.bash_profile
@@ -269,13 +414,13 @@ touch ~/.bash_profile
 
 .bash_profile 中写入如下命令：
 
-```
+```bash
 export PATH=/usr/local/mongodb/bin:$PATH
 ```
 
 然后
 
-```
+```bash
 source ~/.bash_profile
 ```
 
@@ -283,13 +428,13 @@ source ~/.bash_profile
 然后创建数据库存储目录：
 进入 `/usr/local/mongodb` 即 MongoDB 安装文件夹，创建目录
 
-```
+```bash
 sudo mkdir -p /data/db
 ```
 
 然后执行启动 mongodb： （注意，若不执行此命令启动 mongodb 就会如上执行 mongo 命令式一样报错 connect failed 不能连接）可以设置开机自启
 
-```
+```bash
 mongod --dbpath /usr/local/mongodb/data/db
 ```
 
@@ -319,21 +464,21 @@ path 时目录地址，默认时 cmd 打开的目录地址，可以省略，默�
 
 其他参数
 
-| 作用 | 作用 |
-| :-----| :---- |
-| -p 或者 --port | 端口设置，默认是 8080
-| -a | -a 监听地址设置默认是 0.0.0.0
-| -d | 是否显示文件列表 | 默认 true
-| -i | 显示自动索引 | 默认 true
-| -g 或者 --gzip | 默认 false，当文件的 gzip 版本存在且请求接受 gzip 编码时，它将服务于`./public/some-file.js.gz`，而不是`./public/some-file.js`
-| -e 或者 --ext | 如果没有提供默认文件扩展名(默认为 html)
-| -s 或者 --silent | 禁止控制台日志信息输出
-| –cors | 允许跨域资源共享
-| -o | 启动服务后打开默认浏览器
-| -c | 设置缓存 `cache-control max-age heade` 存留时间（以秒为单位），示例：-c10 是 10 秒，默认是 3600 秒，如果要禁用缓存就使用-c-1
-| -U 或者 --utc | 使用 UTC 格式，在控制台输出时间信息
-| -P 或者 --proxy | 通过一个 url 地址，代理不能通过本地解析的资源
-| -S 或者 --ssl | 使用 https 协议
-| -C 或者 --cert ssl | 证书文件的路径，默认是 cert.pem
-| -K 或者 --key ssl | 密匙文件路径
-| -h 或者 --help | 显示帮助
+| 作用               | 作用                                                         |
+| :----------------- | :----------------------------------------------------------- |
+| -p 或者 --port     | 端口设置，默认是 8080                                        |
+| -a                 | -a 监听地址设置默认是 0.0.0.0                                |
+| -d                 | 是否显示文件列表                                             |
+| -i                 | 显示自动索引                                                 |
+| -g 或者 --gzip     | 默认 false，当文件的 gzip 版本存在且请求接受 gzip 编码时，它将服务于`./public/some-file.js.gz`，而不是`./public/some-file.js` |
+| -e 或者 --ext      | 如果没有提供默认文件扩展名(默认为 html)                      |
+| -s 或者 --silent   | 禁止控制台日志信息输出                                       |
+| –cors              | 允许跨域资源共享                                             |
+| -o                 | 启动服务后打开默认浏览器                                     |
+| -c                 | 设置缓存 `cache-control max-age heade` 存留时间（以秒为单位），示例：-c10 是 10 秒，默认是 3600 秒，如果要禁用缓存就使用-c-1 |
+| -U 或者 --utc      | 使用 UTC 格式，在控制台输出时间信息                          |
+| -P 或者 --proxy    | 通过一个 url 地址，代理不能通过本地解析的资源                |
+| -S 或者 --ssl      | 使用 https 协议                                              |
+| -C 或者 --cert ssl | 证书文件的路径，默认是 cert.pem                              |
+| -K 或者 --key ssl  | 密匙文件路径                                                 |
+| -h 或者 --help     | 显示帮助                                                     |
