@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /spider.jpg
+heroImage: /anfield.jpg
 heroText: 我的主页
 tagline: MY HOMEPAGE
 actionText: 技术文档 →
@@ -12,5 +12,5 @@ features:
   details: Vue, React, Vite, Webpack, jQuery、BootStrap。
 - title: 项目经验
   details: BS端管理系统、WebApp、Hybrid App、小程序开发。
-footer: © 2022 Mr.cat
+footer: © 2023 Mr.cat
 ---
