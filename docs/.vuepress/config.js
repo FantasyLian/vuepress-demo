@@ -3,7 +3,8 @@
 module.exports = {
   title: 'Mr.cat 的博客',
   head: [
-    ['link', { rel: 'icon', href: '/avatar.jpg' }]
+    ['link', { rel: 'icon', href: '/avatar.jpg' }],
+    ['link', { rel: 'stylesheet', href: '/style/index.css' }]
   ],
   themeConfig: {
     logo: '/avatar.jpg',
