@@ -1,8 +1,8 @@
 ---
 home: true
 heroImage: /anfield.jpg
-heroText: 我的主页
-tagline: MY HOMEPAGE
+heroText: Mr.cat 的博客
+tagline: You'll Never Walk Alone!
 actionText: 技术文档 →
 actionLink: /tech/interview/
 features:
