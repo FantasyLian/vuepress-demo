@@ -369,9 +369,6 @@ Object.getOwnPropertyNames(Point.prototype)
 
 - Constructor 方法
 
-
-
-
 ## 其他
 
 ### MacOS 安装 MongoDB
@@ -446,12 +443,12 @@ mongod --dbpath /usr/local/mongodb/data/db
 
 ### 利用 node.js 的 http-server 开启本地服务
 
-首先电脑已经安装了 node.js，安装 http-server
-npm install http-server -g
-然后进入你想作为本地服务器根目录的位置，执行命令 htpp-server
-启动本地服务器成功，可以使用 ctrl+c 关闭服务器
+首先电脑已经安装了 **node.js**，安装 **http-server**
+`npm install http-server -g`
+然后进入你想作为本地服务器根目录的位置，执行命令 `htpp-server`
+启动本地服务器成功，可以使用 `ctrl+c` 关闭服务器
 
-`http-server -c-1` （⚠️ 只输入 http-server 的话，更新了代码后，页面不会同步更新）简写 hs
+`http-server -c-1` （⚠️ 只输入 **http-server** 的话，更新了代码后，页面不会同步更新）简写 hs
 
 可以修改服务器的监听地址以及监听的端口号
 
@@ -464,7 +461,7 @@ path 时目录地址，默认时 cmd 打开的目录地址，可以省略，默�
 
 其他参数
 
-| 作用               | 作用                                                         |
+| 命令               | 作用                                                         |
 | :----------------- | :----------------------------------------------------------- |
 | -p 或者 --port     | 端口设置，默认是 8080                                        |
 | -a                 | -a 监听地址设置默认是 0.0.0.0                                |
