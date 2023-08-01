@@ -227,7 +227,7 @@ const asyncReadFile = async function() {
 
 - 类的由来
 
-Javascript语言中，生成实例对象的传统方法是通过***构造函数***：
+Javascript语言中，生成实例对象的传统方法是通过 ***构造函数***：
 
 ```javascript
 function Point(x, y) {
