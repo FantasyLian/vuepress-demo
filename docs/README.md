@@ -12,5 +12,5 @@ features:
   details: Vue, React, Vite, Webpack, jQuery、BootStrap。
 - title: 项目经验
   details: BS端管理系统、WebApp、Hybrid App、小程序开发。
-footer: Copyright © 2023 Mr.cat
+footer:  © Copyright 2023 Mr.cat
 ---
