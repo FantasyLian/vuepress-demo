@@ -1,7 +1,8 @@
 ---
 home: true
+lang: 'zh-cmn-Hans'
 heroImage: /anfield.jpg
-heroText: Mr.cat 的博客
+heroText: This is Anfield!
 tagline: You'll Never Walk Alone!
 actionText: 技术文档 →
 actionLink: /tech/interview/
@@ -12,5 +13,5 @@ features:
   details: Vue, React, Vite, Webpack, jQuery、BootStrap。
 - title: 项目经验
   details: BS端管理系统、WebApp、Hybrid App、小程序开发。
-footer:  © Copyright 2023 Mr.cat
+footer:  MIT Licensed | Copyright © 2020-present Mr.cat
 ---
