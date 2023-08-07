@@ -4,8 +4,8 @@ lang: 'zh-cmn-Hans'
 heroImage: /anfield.jpg
 heroText: This is Anfield!
 tagline: You'll Never Walk Alone!
-actionText: 技术文档 →
-actionLink: /tech/interview/
+# actionText: 技术文档 →
+# actionLink: /tech/interview/
 features:
 - title: 前端技术
   details: 以HTML(5) + CSS(3)布局，通过JavaScript与进行异步操作与后端交互。
