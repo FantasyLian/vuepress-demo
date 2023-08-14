@@ -36,7 +36,7 @@ module.exports = {
       '/frontend/html/': [{
         title: 'HTML/CSS',
         collapsable: true,
-        sidebarDepth: 1,
+        sidebarDepth: 2,
         children: [
           { title: 'HTML5', path: '/frontend/html/1' },
           { title: 'CSS3', path: '/frontend/html/2' }
@@ -62,7 +62,7 @@ module.exports = {
       '/frontend/vue/': [{
         title: 'Vue',
         collapsable: true,
-        sidebarDepth: 1,
+        sidebarDepth: 2,
         children: [
           { title: 'Vue基础', path: '/frontend/vue/1' },
           { title: 'Vue进阶', path: '/frontend/vue/2' }
